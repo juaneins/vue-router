@@ -14,11 +14,13 @@ const router = createRouter({
     },
     {
       path: '/chats',
-      component: () => import('../views/ChatsView.vue')
-    },
-    {
-      path: '/chats/:chatId',
-      component: () => import('../views/ChatsView.vue')
+      component: () => import('../views/ChatsView.vue'),
+      children: [
+        {
+          path: ':chatId',
+          component: () => import('../views/ChatView.vue')
+        }
+      ]
     }
   ]
 })

@@ -29,7 +29,9 @@ const chats = reactive([
                 <RouterLink :to="`/chats/${chat.id}`">{{ chat.name }}</RouterLink>
             </div>
         </aside>
-        <article>{{ route.params.chatId }}</article>
+        <article>
+            <RouterView />
+        </article>
 
     </div>
 </template>
