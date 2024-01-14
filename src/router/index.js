@@ -4,11 +4,21 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    // {
+    //   path: '/home',
+    //   redirect: { name: 'home' }
+    // },
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      alias: ['/home']
     },
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: HomeView
+    // },
     {
       path: '/session',
       component: () => import('../views/SessionView.vue'),
