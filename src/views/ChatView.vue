@@ -1,6 +1,6 @@
 <script setup>
-import { computed, reactive } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, reactive, defineProps, toRefs } from 'vue';
+//import { useRoute } from 'vue-router';
 
 const messages = reactive([
     {
@@ -20,13 +20,20 @@ const messages = reactive([
     },
 ]);
 
-const route = useRoute();
+//const route = useRoute();
 
-const filteredMessages = computed(() =>
-    messages.filter(msg =>
-        `${msg.author}` === route.params.chatId
-    )
-)
+const props = defineProps({
+    chatId: {
+        type: String,
+        default: ''
+    }
+});
+
+const { chatId } = toRefs(props);
+
+const filteredMessages = computed(() => {
+    return messages.filter((m) => `${m.author}` === chatId.value);
+});
 
 </script>
 <template>

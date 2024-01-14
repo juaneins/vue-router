@@ -43,7 +43,13 @@ const router = createRouter({
       children: [
         {
           path: ':chatId',
-          component: () => import('../views/ChatView.vue')
+          component: () => import('../views/ChatView.vue'),
+          //props: true
+          props: (route) => {
+            return {
+              chatId: route.params.chatId
+            }
+          }
         }
       ]
     }
