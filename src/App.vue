@@ -10,6 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+        <RouterLink to="/session">Session</RouterLink>
         <RouterLink to="/chats">Chats</RouterLink>
         <RouterLink :to="{ name: 'about' }">About</RouterLink>
       </nav>
