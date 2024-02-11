@@ -50,7 +50,7 @@ const router = createRouter({
       path: '/chats',
       component: () => import('../views/ChatsView.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         roles: ['admin'],
       },
       children: [
@@ -72,7 +72,7 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   console.log('to: ', to, 'from: ', from);
 
-  if (to.meta?.requiresAuth && to.meta.includes('admin')) {
+  if (to.meta?.requiresAuth) {
     console.log(to.path, 'requires auth');
     return '/session';
   }

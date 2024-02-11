@@ -1,25 +1,29 @@
 <script setup>
-import { reactive } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
+const chats = ref([]);
 const route = useRoute();
 //const router = useRouter();
 
-const chats = reactive([
-    {
-        id: 1,
-        name: 'Juan'
-    },
-    {
-        id: 2,
-        name: 'Jose'
-    },
-    {
-        id: 3,
-        name: 'Julian'
-    }
+watch(() => route.params, (val) => {
+    console.log('update params', val);
+    chats.value = [
+        {
+            id: 1,
+            name: 'Juan'
+        },
+        {
+            id: 2,
+            name: 'Jose'
+        },
+        {
+            id: 3,
+            name: 'Julian'
+        }
 
-]);
+    ];
+}, { immediate: true })
 
 </script>
 <template>
