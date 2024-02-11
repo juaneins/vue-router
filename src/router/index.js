@@ -1,4 +1,6 @@
 import HomeView from '@/views/HomeView.vue';
+import NotFound from '@/views/404View.vue';
+
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
@@ -8,6 +10,8 @@ const router = createRouter({
     //   path: '/home',
     //   redirect: { name: 'home' }
     // },
+    { path: '/404', component: NotFound },
+    { path: '/:catchAll(.*)', redirect: '/404' },
     {
       path: '/',
       name: 'home',
@@ -55,7 +59,7 @@ const router = createRouter({
       },
       children: [
         {
-          path: ':chatId',
+          path: ':chatId(\\d+)',
           component: () => import('../views/ChatView.vue'),
           //props: true
           props: (route) => {
@@ -72,14 +76,14 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   console.log('to: ', to, 'from: ', from);
 
-  if (to.meta?.requiresAuth) {
-    console.log(to.path, 'requires auth');
-    return '/session';
-  }
+  // if (to.meta?.requiresAuth) {
+  //   console.log(to.path, 'requires auth');
+  //   return '/session';
+  // }
 
-  if (to.path === '/') {
-    return { name: 'about' };
-  }
+  // if (to.path === '/') {
+  //   return { name: 'about' };
+  // }
   return true;
 });
 
