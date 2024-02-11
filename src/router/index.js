@@ -1,5 +1,5 @@
-import HomeView from '@/views/HomeView.vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -12,7 +12,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      alias: ['/home']
+      alias: ['/home'],
     },
     // {
     //   path: '/',
@@ -27,15 +27,15 @@ const router = createRouter({
           path: '',
           components: {
             default: () => import('../views/LoginView.vue'),
-            register: () => import('../views/RegisterView.vue')
-          }
-        }
-      ]
+            register: () => import('../views/RegisterView.vue'),
+          },
+        },
+      ],
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
     },
     {
       path: '/chats',
@@ -47,13 +47,21 @@ const router = createRouter({
           //props: true
           props: (route) => {
             return {
-              chatId: route.params.chatId
-            }
-          }
-        }
-      ]
-    }
-  ]
-})
+              chatId: route.params.chatId,
+            };
+          },
+        },
+      ],
+    },
+  ],
+});
 
-export default router
+router.beforeEach((to, from) => {
+  console.log('to: ', to, 'from: ', from);
+  if (to.path === '/') {
+    return { name: 'about' };
+  }
+  return true;
+});
+
+export default router;
