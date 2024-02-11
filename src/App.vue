@@ -1,5 +1,7 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
+
+const isTest = import.meta.env.VITE_STAGE === 'test'
 
 </script>
 
@@ -12,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink :to="{ name: 'home' }">Home</RouterLink>
         <RouterLink to="/session">Session</RouterLink>
         <RouterLink to="/chats">Chats</RouterLink>
+        <RouterLink v-if="isTest" to="/profile">Profile</RouterLink>
         <RouterLink :to="{ name: 'about' }">About</RouterLink>
       </nav>
     </div>
